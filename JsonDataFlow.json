@@ -1,0 +1,259 @@
+[
+    {
+        "id": "f9be74608213b15a",
+        "type": "tab",
+        "label": "JSON",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "7a214445abc040f2",
+        "type": "mqtt in",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "topic": "testpaw/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "b3a2999b3765d7a4"
+            ]
+        ]
+    },
+    {
+        "id": "b3a2999b3765d7a4",
+        "type": "json",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "945ec53e4f87f958",
+                "0de1ea15ffdbea9f",
+                "324243bea7f97861"
+            ]
+        ]
+    },
+    {
+        "id": "945ec53e4f87f958",
+        "type": "function",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "func": "msg.payload = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 100,
+        "wires": [
+            [
+                "e6f1a0e556225abf",
+                "9935c3da713f644d"
+            ]
+        ]
+    },
+    {
+        "id": "0de1ea15ffdbea9f",
+        "type": "function",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "func": "msg.payload = msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [
+                "2da5f1133be7f84e"
+            ]
+        ]
+    },
+    {
+        "id": "324243bea7f97861",
+        "type": "function",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "func": "msg.payload = msg.payload.temp;\nmsg.topic = msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 360,
+        "wires": [
+            [
+                "17b3d93857f9828f"
+            ]
+        ]
+    },
+    {
+        "id": "e6f1a0e556225abf",
+        "type": "debug",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 770,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2da5f1133be7f84e",
+        "type": "ui_gauge",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "group": "4d38ffba37c42cac",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C - units",
+        "format": "{{value}}",
+        "min": "-24",
+        "max": "45",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 770,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "17b3d93857f9828f",
+        "type": "ui_chart",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "group": "4d38ffba37c42cac",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Historico Temperatura CUU",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-30",
+        "ymax": "45",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 820,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9935c3da713f644d",
+        "type": "ui_text_input",
+        "z": "f9be74608213b15a",
+        "name": "",
+        "label": "Nombre",
+        "tooltip": "",
+        "group": "4d38ffba37c42cac",
+        "order": 1,
+        "width": "8",
+        "height": "1",
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 760,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8655f913e3e6927e",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "35.157.158.119",
+        "port": "1883",
+        "clientid": "JMTrancePaw",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "testpaw",
+        "birthQos": "2",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "4d38ffba37c42cac",
+        "type": "ui_group",
+        "name": "Funciones Json-MQTT ",
+        "tab": "11919a94dd42c30b",
+        "order": 1,
+        "disp": true,
+        "width": "8",
+        "collapse": false
+    },
+    {
+        "id": "11919a94dd42c30b",
+        "type": "ui_tab",
+        "name": "Json-Mqtt",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
