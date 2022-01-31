@@ -15,6 +15,7 @@
         "topic": "testpaw/temp",
         "qos": "2",
         "datatype": "auto",
+        "broker": "8655f913e3e6927e",
         "nl": false,
         "rap": true,
         "rh": 0,
